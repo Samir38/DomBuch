@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  desc: MyString
+  sum: 1
+  date: 2014-04-21
+  kind: MyString
+
+two:
+  desc: MyString
+  sum: 1
+  date: 2014-04-21
+  kind: MyString
