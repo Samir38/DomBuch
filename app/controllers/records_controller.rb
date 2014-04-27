@@ -1,20 +1,16 @@
 class RecordsController < ApplicationController
   before_action :set_record, only: [:show, :edit, :update, :destroy]
-
-  # GET /records
-  # GET /records.json
+  before_action :authenticate_user!
   def index
-    @records = Record.all
+    @records = current_user.records.all
   end
 
-  # GET /records/1
-  # GET /records/1.json
   def show
   end
 
   # GET /records/new
   def new
-    @record = Record.new
+    @record = current_user.records.new
   end
 
   # GET /records/1/edit
@@ -24,7 +20,7 @@ class RecordsController < ApplicationController
   # POST /records
   # POST /records.json
   def create
-    @record = Record.new(record_params)
+    @record = current_user.records.new(record_params)
 
     respond_to do |format|
       if @record.save
@@ -64,7 +60,7 @@ class RecordsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_record
-      @record = Record.find(params[:id])
+      @record = current_user.records.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
