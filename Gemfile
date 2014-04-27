@@ -8,7 +8,7 @@ gem 'rails', '4.0.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 gem 'bootstrap-sass'
-
+gem 'rb-readline'
 # Authentication
 gem 'devise'
 gem 'devise-token_authenticatable'
