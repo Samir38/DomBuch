@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140427063113) do
+ActiveRecord::Schema.define(version: 20140428131715) do
+
+  create_table "categories", id: false, force: true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "categories", ["name"], name: "index_categories_on_name", unique: true
 
   create_table "records", force: true do |t|
     t.string   "desc"

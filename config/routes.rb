@@ -1,4 +1,6 @@
 Uchet::Application.routes.draw do
+  resources :categories
+
   devise_for :users
   resources :records
   root to: 'home#show'
