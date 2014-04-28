@@ -1,9 +1,9 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate!
+  before_action :authenticate_user!
 
   def index
-    @categories = current_user.all
+    @categories = current_user.categories.all
   end
 
   def show
@@ -30,8 +30,6 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /categories/1
-  # PATCH/PUT /categories/1.json
   def update
     respond_to do |format|
       if @category.update(category_params)
@@ -54,7 +52,7 @@ class CategoriesController < ApplicationController
 
   private
     def set_category
-      @category = current_user.categories.find(params[:id])
+      @category = current_user.categories.find_by(name: params[:id])
     end
 
     def category_params

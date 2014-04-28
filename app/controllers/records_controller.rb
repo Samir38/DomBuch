@@ -2,7 +2,14 @@ class RecordsController < ApplicationController
   before_action :set_record, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   def index
-    @records = current_user.records.all
+    if category = current_user.categories.find_by(name: params[:category])
+      @records = current_user.records.where(category: category)
+    else
+      @records = current_user.records.all
+    end
+    @records = @records.sort { |a,b| b.date <=> a.date }
+    @categories = current_user.categories.all
+    @summ = @records.map {|x| [x.kind, x.sum]}.inject(0) { |result, x| result += x.first == 'Кредит' ? x.last : -x.last }
   end
 
   def show
@@ -21,7 +28,8 @@ class RecordsController < ApplicationController
   # POST /records.json
   def create
     @record = current_user.records.new(record_params)
-
+    category = params[:category] ? current_user.categories.find_or_create_by(name: params[:category]) : nil
+    @record.category = category if category
     respond_to do |format|
       if @record.save
         format.html { redirect_to @record, notice: 'Record was successfully created.' }
@@ -33,9 +41,10 @@ class RecordsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /records/1
-  # PATCH/PUT /records/1.json
   def update
+    ap params
+    category = params[:category] ? current_user.categories.find_or_create_by(name: params[:category]) : nil
+    @record.category = category if category
     respond_to do |format|
       if @record.update(record_params)
         format.html { redirect_to @record, notice: 'Record was successfully updated.' }

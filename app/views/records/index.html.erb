@@ -1,33 +1,51 @@
 <h1>Listing records</h1>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Описание</th>
-      <th>Сумма</th>
-      <th>Дата</th>
-      <th>Вид</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @records.each do |record| %>
+<div class="row">
+  <div class="col-md-3">
+    <ul class="category-list">
+      <% @categories.each_with_index do |category, i| %>
+        <li style="margin-top: <%= i == 0 ? 10 : 0 %>px">
+          <a class="btn btn-primary" style="display: inline"
+             href="<%= "#{records_path}?category=#{category.name}" %>">
+            <%= category.name %>
+            <i class="glyphicon glyphicon-chevron-right"></i>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-md-9">
+    <%= link_to 'New Record', new_record_path, class: 'btn btn-success pull-right' %>
+    <table class="table">
+      <thead>
       <tr>
-        <td><%= record.desc %></td>
-        <td><%= record.sum %></td>
-        <td><%= record.date %></td>
-        <td><%= record.kind %></td>
-        <td><%= link_to 'Show', record %></td>
-        <td><%= link_to 'Edit', edit_record_path(record) %></td>
-        <td><%= link_to 'Destroy', record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Описание</th>
+        <th>Сумма</th>
+        <th>Дата</th>
+        <th>Вид</th>
+        <th>Категория</th>
+        <th></th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+      </thead>
 
-<br>
-
-<%= link_to 'New Record', new_record_path %>
+      <tbody>
+      <% @records.each do |record| %>
+        <tr class="<%= record.kind == 'Кредит' ? 'credit' : 'debet' %>">
+          <td><%= record.desc %></td>
+          <td><%= record.sum %></td>
+          <td><%= record.date %></td>
+          <td><%= record.kind %></td>
+          <td><%= record.category_name || 'Без категории' %></td>
+          <td><%= link_to 'Редактировать', edit_record_path(record), class: 'btn btn-warning' %></td>
+          <td><%= link_to 'Удалить', record, method: :delete,
+                          data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div style="text-align: right" class="col-md-3 col-md-offset-9">
+    Итого:
+    <div class="btn <%= @summ > 0 ? 'btn-success' : 'btn-danger' %>"><%= @summ %></div>
+  </div>
+</div>
