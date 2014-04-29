@@ -1,5 +1,8 @@
 class Record < ActiveRecord::Base
 
+  validates_presence_of :desc, :sum
+  validates_numericality_of :sum
+
   belongs_to :user
   belongs_to :category
 

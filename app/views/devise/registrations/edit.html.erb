@@ -1,9 +1,11 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="row">
+  <div class="col-md-6">
+<h2>Редактирование <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :name %><br />
+  <div><%= f.label :name, 'Имя' %><br />
     <%= f.text_field :name, autofocus: true %></div>
 
   <div><%= f.label :email %><br />
@@ -13,16 +15,21 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+  <div><%= f.label :password, 'Пароль' %> <i>(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, autocomplete: "off" %></div>
 
-  <div><%= f.label :password_confirmation %><br />
+  <div><%= f.label :password_confirmation, 'Новый пароль' %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
 
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+  <div><%= f.label :current_password, 'Повторите пароль' %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "off" %></div>
 
-  <div><%= f.submit "Update" %></div>
+  <div><%= f.submit "Обновить" %></div>
 <% end %>
 
-<%= link_to "Back", :back %>
+<%= link_to "Назад", :back %>
+  </div>
+  <div class="col-md-6">
+    <%= image_tag 'edit.jpg' %>
+  </div>
+</div>

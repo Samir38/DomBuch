@@ -12,23 +12,23 @@
   <% end %>
     
   <div class="field">
-    <%= f.label :desc %><br>
+    <%= f.label :desc, 'Описание' %><br>
     <%= f.text_field :desc %>
   </div>
   <div class="field">
-    <%= f.label :sum %><br>
-    <%= f.number_field :sum %>
+    <%= f.label :sum, 'Сумма' %><br>
+    <%= f.text_field :sum %>
   </div>
   <div class="field">
-    <%= f.label :date %><br>
+    <%= f.label :date, 'Дата' %><br>
     <%= f.date_select :date %>
   </div>
   <div class="field">
-    <%= f.label :kind %><br>
+    <%= f.label :kind, 'Вид' %><br>
     <%= f.select :kind, ['Кредит', 'Дебет'] %>
   </div>
   <div class="field">
-    <label for="category">Category</label><br>
+    <label for="category">Категория</label><br>
     <input value="<%= f.object.category_name %>" name="category" id="category">
   </div>
   <div class="actions">
