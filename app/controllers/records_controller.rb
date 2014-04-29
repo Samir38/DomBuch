@@ -9,7 +9,7 @@ class RecordsController < ApplicationController
     end
     @records = @records.sort { |a,b| b.date <=> a.date }
     @categories = current_user.categories.all
-    @summ = @records.map {|x| [x.kind, x.sum]}.inject(0) { |result, x| result += x.first == 'Кредит' ? x.last : -x.last }
+    @summ = Record.all.pluck(:sum, :kind).inject(0) { |result, x| result += x.last == 'Кредит' ? x.first : -x.first }
   end
 
   def show

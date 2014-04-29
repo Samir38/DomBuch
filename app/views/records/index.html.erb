@@ -14,7 +14,7 @@
     </ul>
   </div>
   <div class="col-md-9">
-    <%= link_to 'New Record', new_record_path, class: 'btn btn-success pull-right' %>
+    <%= link_to 'Новая запись', new_record_path, class: 'btn btn-success pull-right' %>
     <table class="table">
       <thead>
       <tr>
@@ -45,7 +45,7 @@
     </table>
   </div>
   <div style="text-align: right" class="col-md-3 col-md-offset-9">
-    Итого:
+    Баланс:
     <div class="btn <%= @summ > 0 ? 'btn-success' : 'btn-danger' %>"><%= @summ %></div>
   </div>
 </div>
