@@ -2,8 +2,15 @@
 <div class="row">
   <div class="col-md-3">
     <ul class="category-list">
-      <% @categories.each_with_index do |category, i| %>
-        <li style="margin-top: <%= i == 0 ? 10 : 0 %>px">
+      <li style="margin-top: 10px">
+        <a class="btn btn-primary" style="display: inline"
+           href="<%= records_path %>">
+          Все записи
+          <i class="glyphicon glyphicon-chevron-right"></i>
+        </a>
+      </li>
+      <% @categories.each do |category| %>
+        <li>
           <a class="btn btn-primary" style="display: inline"
              href="<%= "#{records_path}?category=#{category.name}" %>">
             <%= category.name %>
