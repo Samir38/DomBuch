@@ -1,30 +1,35 @@
+<%= javascript_include_tag 'categories' %>
 <%= form_for(@record) do |f| %>
   <% if @record.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@record.errors.count, "error") %> prohibited this record from being saved:</h2>
 
       <ul>
-      <% @record.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @record.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
-    
+
   <div class="field">
-    <%= f.label :desc, 'Описание' %><br>
+    <%= f.label :desc, 'Описание' %>
+    <br>
     <%= f.text_field :desc %>
   </div>
   <div class="field">
-    <%= f.label :sum, 'Сумма' %><br>
+    <%= f.label :sum, 'Сумма' %>
+    <br>
     <%= f.text_field :sum %>
   </div>
   <div class="field">
-    <%= f.label :date, 'Дата' %><br>
+    <%= f.label :date, 'Дата' %>
+    <br>
     <%= f.date_select :date %>
   </div>
   <div class="field">
-    <%= f.label :kind, 'Вид' %><br>
+    <%= f.label :kind, 'Вид' %>
+    <br>
     <%= f.select :kind, ['Кредит', 'Дебет'] %>
   </div>
   <div class="field">
