@@ -21,7 +21,8 @@ class RecordDecorator
   end
 
   def filter_date
-    @records = @records.where('date >= ? AND date <= ?', get_timestamp(params[:start]), get_timestamp(params[:end]))
+    @records = @records.where('date >= ? AND date <= ?',
+              get_timestamp(params[:start]), get_timestamp(params[:end])) if params[:start] and params[:end]
   end
 
   def get_timestamp(date)
