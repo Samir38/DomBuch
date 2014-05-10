@@ -4,13 +4,12 @@ class RecordsController < ApplicationController
 
   def index
     if category = current_user.categories.find_by(name: params[:category])
-      @records = current_user.records.where(category: category)
+      @records =  RecordDecorator.new(current_user.records.where(category: category)).filtered(params)
     else
-      @records = current_user.records.all
+      @records = RecordDecorator.new(current_user.records).filtered(params)
     end
-    @records = @records.sort { |a, b| b.date <=> a.date }
     @categories = current_user.categories.all.map { |x| x if x.records.size > 0 }.delete_if { |x| x.nil? }
-    @summ = Record.all.pluck(:sum, :kind).inject(0) { |result, x| result += x.last == 'Кредит' ? x.first : -x.first }
+    @sum = current_user.records.pluck(:sum, :kind).inject(0) { |result, x| result += x.last == 'Кредит' ? x.first : -x.first }
   end
 
   def show

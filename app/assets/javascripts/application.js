@@ -15,3 +15,4 @@
 //= require jquery.ui.all
 //= require underscore
 //= require turbolinks
+//= require_tree .
