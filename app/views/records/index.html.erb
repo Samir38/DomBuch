@@ -59,7 +59,7 @@
       <% end %>
       </tbody>
     </table>
-    <%= will_paginate @records, renderer: BootstrapPagination::Rails %>
+    <%= will_paginate @records, renderer: BootstrapPagination::Rails, previous_label: '&#8592;', next_label: '&#8594;' %>
   </div>
   <div style="text-align: right" class="col-md-3 col-md-offset-9">
     Баланс:
