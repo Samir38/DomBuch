@@ -46,7 +46,7 @@
 
       <tbody>
       <% @records.each do |record| %>
-        <tr class="<%= record.kind != 'Кредит' ? 'credit' : 'debet' %>">
+        <tr class="<%= record.kind != 'Расход' ? 'credit' : 'debet' %>">
           <td><%= record.desc %></td>
           <td><%= record.sum %></td>
           <td><%= record.date %></td>
