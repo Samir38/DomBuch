@@ -1,4 +1,3 @@
-<%= javascript_include_tag 'categories' %>
 <%= form_for(@record) do |f| %>
   <% if @record.errors.any? %>
     <div id="error_explanation">
@@ -11,20 +10,17 @@
       </ul>
     </div>
   <% end %>
-
+    
   <div class="field">
-    <%= f.label :desc, 'Описание' %>
-    <br>
+    <%= f.label :desc, 'Описание' %><br>
     <%= f.text_field :desc %>
   </div>
   <div class="field">
-    <%= f.label :sum, 'Сумма' %>
-    <br>
-    <%= f.text_field :sum %>
+    <%= f.label :sum, 'Сумма' %><br>
+    <%= f.number_field :sum %>
   </div>
   <div class="field">
-    <%= f.label :date, 'Дата' %>
-    <br>
+    <%= f.label :date, 'Дата' %><br>
     <%= f.date_select :date %>
   </div>
   <div class="field">

@@ -1,12 +1,7 @@
-<div class="row">
-  <div class="col-md-4">
-    <%= image_tag '345.jpeg', style: 'margin-left: 350px' %>
-  </div>
-  <div class="col-md-4" align="center">
-    <h2>Регистрация</h2>
+<h2>Sign up</h2>
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= devise_error_messages! %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
 
       <div><%= f.label :name, 'Имя' %>
         <br/>
