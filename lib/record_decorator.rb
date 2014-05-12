@@ -8,11 +8,15 @@ class RecordDecorator
 
   def filtered(params)
     @params = params
-    filter_date
+    filter_date if valid_dates?(params)
     filter_page
   end
 
   private
+
+  def valid_dates?(params)
+    params[:start].present? and params[:end].present?
+  end
 
   def filter_page
     per_page = params[:per_page]
