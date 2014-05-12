@@ -32,7 +32,7 @@ class RecordsController < ApplicationController
     @record.category = category if category
     respond_to do |format|
       if @record.save
-        format.html { redirect_to @record, notice: 'Record was successfully created.' }
+        format.html { redirect_to @record, notice: 'Запись успешно создана.' }
         format.json { render action: 'show', status: :created, location: @record }
       else
         format.html { render action: 'new' }
@@ -46,7 +46,7 @@ class RecordsController < ApplicationController
     @record.category = category if category
     respond_to do |format|
       if @record.update(record_params)
-        format.html { redirect_to @record, notice: 'Record was successfully updated.' }
+        format.html { redirect_to @record, notice: 'Запись успешно обновлена.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

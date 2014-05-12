@@ -2,11 +2,11 @@
 <%= form_for(@record) do |f| %>
   <% if @record.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@record.errors.count, "error") %> prohibited this record from being saved:</h2>
+      <h2><%= t pluralize(@record.errors.count, "error")%></h2>
 
       <ul>
         <% @record.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
+          <li><%= t msg %></li>
         <% end %>
       </ul>
     </div>
@@ -30,7 +30,7 @@
   <div class="field">
     <%= f.label :kind, 'Вид' %>
     <br>
-    <%= f.select :kind, ['Кредит', 'Дебет'] %>
+    <%= f.select :kind, ['Расход', 'Доход'] %>
   </div>
   <div class="field">
     <label for="category">Категория</label><br>

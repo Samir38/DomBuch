@@ -48,6 +48,7 @@ ru:
   records: записи
   record: запись
   previous_label: предыдущая
+  sum: сумма
   next_label: следующая
   errors:
     format: ! '%{attribute} %{message}'
