@@ -1,3 +1,5 @@
+<div class="row">
+  <div class="col-md-6">
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -20,5 +22,10 @@
   <%= @record.kind %>
 </p>
 
-<%= link_to 'Edit', edit_record_path(@record) %> |
-<%= link_to 'Back', records_path %>
+<%= link_to 'Редактировать', edit_record_path(@record) %> |
+<%= link_to 'Назад', records_path %>
+  </div>
+  <div class="col-md-6">
+    <%= image_tag 'show2.jpg' %>
+  </div>
+</div>

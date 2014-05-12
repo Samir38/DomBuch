@@ -1,4 +1,4 @@
-<h1>Listing records</h1>
+<h1>Записи</h1>
 <div class="row">
   <div class="col-md-3">
     <ul class="category-list">
@@ -38,7 +38,7 @@
           <td><%= record.category_name || 'Без категории' %></td>
           <td><%= link_to 'Редактировать', edit_record_path(record), class: 'btn btn-warning' %></td>
           <td><%= link_to 'Удалить', record, method: :delete,
-                          data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %></td>
+                          data: {confirm: 'Вы уверены?'}, class: 'btn btn-danger' %></td>
         </tr>
       <% end %>
       </tbody>
