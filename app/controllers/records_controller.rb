@@ -42,7 +42,6 @@ class RecordsController < ApplicationController
   end
 
   def update
-    ap params
     category = params[:category] ? current_user.categories.find_or_create_by(name: params[:category]) : nil
     @record.category = category if category
     respond_to do |format|
