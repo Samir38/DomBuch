@@ -1,15 +1,15 @@
 class RecordsController < ApplicationController
   before_action :set_record, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+
   def index
     if category = current_user.categories.find_by(name: params[:category])
-      @records = current_user.records.where(category: category)
+      @records =  RecordDecorator.new(current_user.records.where(category: category)).filtered(params)
     else
-      @records = current_user.records.all
+      @records = RecordDecorator.new(current_user.records).filtered(params)
     end
-    @records = @records.sort { |a,b| b.date <=> a.date }
-    @categories = current_user.categories.all
-    @summ = @records.map {|x| [x.kind, x.sum]}.inject(0) { |result, x| result += x.first == 'Кредит' ? x.last : -x.last }
+    @categories = current_user.categories.all.map { |x| x if x.records.size > 0 }.delete_if { |x| x.nil? }
+    @sum = current_user.records.pluck(:sum, :kind).inject(0) { |result, x| result += x.last != 'Кредит' ? x.first : -x.first }
   end
 
   def show
@@ -42,7 +42,6 @@ class RecordsController < ApplicationController
   end
 
   def update
-    ap params
     category = params[:category] ? current_user.categories.find_or_create_by(name: params[:category]) : nil
     @record.category = category if category
     respond_to do |format|
@@ -67,13 +66,13 @@ class RecordsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_record
-      @record = current_user.records.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_record
+    @record = current_user.records.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def record_params
-      params.require(:record).permit(:desc, :sum, :date, :kind)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def record_params
+    params.require(:record).permit(:desc, :sum, :date, :kind)
+  end
 end
