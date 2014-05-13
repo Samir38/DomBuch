@@ -18,4 +18,22 @@ class Record < ActiveRecord::Base
     end
   end
 
+  def self.user_summary(user)
+    plus = connection.execute(
+        <<-SQL
+          SELECT SUM(sum) AS sum
+          FROM records WHERE kind = 'Доход'
+          AND user_id=#{user.id}
+        SQL
+        ).first['sum']
+    minus = connection.execute(
+        <<-SQL
+          SELECT SUM(sum) AS sum
+          FROM records WHERE kind = 'Расход'
+          AND user_id=#{user.id}
+        SQL
+        ).first['sum']
+    plus.to_i - minus.to_i
+  end
+
 end

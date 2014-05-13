@@ -9,7 +9,7 @@ class RecordsController < ApplicationController
       @records = RecordDecorator.new(current_user.records).filtered(params)
     end
     @categories = current_user.categories.all.map { |x| x if x.records.size > 0 }.delete_if { |x| x.nil? }
-    @sum = current_user.records.pluck(:sum, :kind).inject(0) { |result, x| result += x.last != 'Кредит' ? x.first : -x.first }
+    @sum = Record.user_summary(current_user)
   end
 
   def show
