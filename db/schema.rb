@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140428132725) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "categories", force: true do |t|
     t.string   "name"
     t.integer  "user_id"
@@ -20,7 +23,7 @@ ActiveRecord::Schema.define(version: 20140428132725) do
     t.datetime "updated_at"
   end
 
-  add_index "categories", ["name"], name: "index_categories_on_name", unique: true
+  add_index "categories", ["name"], name: "index_categories_on_name", unique: true, using: :btree
 
   create_table "records", force: true do |t|
     t.string   "desc"
@@ -50,7 +53,7 @@ ActiveRecord::Schema.define(version: 20140428132725) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

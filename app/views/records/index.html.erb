@@ -9,6 +9,12 @@
           <i class="glyphicon glyphicon-chevron-right"></i>
         </a>
       </li>
+      <li>
+        <a class="btn btn-primary" href="<%= records_path + '?category=none' %>">
+          Без категории
+          <i class="glyphicon glyphicon-chevron-right"></i>
+        </a>
+      </li>
       <% @categories.each do |category| %>
         <li>
           <a class="btn btn-primary" style="display: inline"
@@ -52,14 +58,19 @@
           <td><%= record.date %></td>
           <td><%= record.kind %></td>
           <td><%= record.category_name || 'Без категории' %></td>
-          <td><%= link_to 'Редактировать', edit_record_path(record), class: 'btn btn-warning' %></td>
-          <td><%= link_to 'Удалить', record, method: :delete,
-                          data: {confirm: 'Вы уверены?'}, class: 'btn btn-danger' %></td>
+          <td><a class="fa fa-times" style="color: red"></a></td>
+          <td><a class="fa fa-times" data-confirm="Вы уверены?"
+                 data-method="delete" href="record_pa" style="color: red"></a></td>
+          <td><%= link_to '', edit_record_path(record), class: 'glyphicon glyphicon-pencil' %></td>
+          <td><%= link_to '', record, method: :delete,
+                          data: {confirm: 'Вы уверены?'}, class: 'glyphicon glyphicon-remove' %></td>
         </tr>
       <% end %>
       </tbody>
     </table>
-    <%= will_paginate @records, renderer: BootstrapPagination::Rails, previous_label: '&#8592;', next_label: '&#8594;' %>
+    <% if @records.count > 0 %>
+      <%= will_paginate @records, renderer: BootstrapPagination::Rails, previous_label: '&#8592;', next_label: '&#8594;' %>
+    <% end %>
   </div>
   <div style="text-align: right" class="col-md-3 col-md-offset-9">
     Баланс:

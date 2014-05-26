@@ -3,12 +3,8 @@ class RecordsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    if category = current_user.categories.find_by(name: params[:category])
-      @records =  RecordDecorator.new(current_user.records.where(category: category)).filtered(params)
-    else
-      @records = RecordDecorator.new(current_user.records).filtered(params)
-    end
-    @categories = current_user.categories.all.map { |x| x if x.records.size > 0 }.delete_if { |x| x.nil? }
+    @records = FilteredRecords.new(current_user.records, params).collection
+    @categories = current_user.not_empty_categories
     @sum = Record.user_summary(current_user)
   end
 

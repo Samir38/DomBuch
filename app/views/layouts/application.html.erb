@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Uchet</title>
-  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+  <title>DomBuch</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -18,6 +19,7 @@
       <% if user_signed_in? %>
         <ul class="nav navbar-nav">
           <li><a href="<%= records_path %>">Записи</a></li>
+          <li><a href="<%= contacts_path %>">Контакты</a></li>
         </ul>
       <% end %>
       <ul class="nav navbar-nav navbar-right">
@@ -48,6 +50,7 @@
 <div class="container">
   <%= yield %>
 </div>
-<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </body>
+
 </html>

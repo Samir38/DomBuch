@@ -5,4 +5,8 @@ class Category < ActiveRecord::Base
   def to_param
     name
   end
+
+  def not_empty
+
+  end
 end
